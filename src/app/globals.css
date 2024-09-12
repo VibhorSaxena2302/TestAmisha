@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 27 27 27;
+    --foreground: 225 225 225;
+    --muted: 115 115 115;
+    --accent: 254 254 91;
+  }
+}
+
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+
+  .custom-bg {
+    @apply bg-background border border-accent border-solid backdrop-blur-[6px] shadow-glass-inset hover:shadow-glass-sm;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+ 
+ /* For the transparent background */
+.transparent-box {
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+  padding: 20px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+/* On hover or focus (click) */
+.transparent-box:hover,
+.transparent-box:focus {
+  background-color: rgba(254, 254, 91, 0.2); /* Light yellow with 20% transparency */
+  outline: none;
+}
+
+/* For when a box is clicked, to keep the effect */
+.transparent-box:active {
+  background-color: rgba(254, 254, 91, 0.4); /* Slightly stronger yellow */
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate-slow {
+  animation: rotate 60s linear infinite;
+}
