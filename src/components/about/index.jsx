@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image"; // Import Image component
+import Link from "next/link";
 import { useState } from "react";
 import ItemLayout from "./ItemLayout";
 
@@ -65,6 +66,23 @@ A low, raspy breath filled the line. It was faint, but unmistakable. Someone was
             loading="lazy"
           />
         </ItemLayout>
+
+        <ItemLayout className="col-span-full xs:col-span-6 lg:col-span-4 text-accent">
+    <h2 className="text-xl md:text-2xl text-left w-full capitalize">
+        Chapters
+    </h2>
+    <div className="flex flex-col gap-2">
+    <Link href="/chapter-1" className="text-blue-500 hover:underline">
+  Chapter 1
+</Link>
+<Link href="/chapter-2" className="text-blue-500 hover:underline">
+  Chapter 2
+</Link>
+<Link href="/chapter-3" className="text-blue-500 hover:underline">
+  Chapter 3
+</Link>
+    </div>
+</ItemLayout>
 
         {/* Leo's Digital Garden Section with Increased Font Size */}
         <ItemLayout className="col-span-full lg:col-span-8 row-span-2 flex-col items-start">
