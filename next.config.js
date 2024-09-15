@@ -1,27 +1,37 @@
-/** @type {import('next').NextConfig} */
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
-
-let basePath = '';
-let assetPrefix = '';
-
-if (isGithubActions) {
-  // Check if GITHUB_REPOSITORY exists before using it
-  if (process.env.GITHUB_REPOSITORY) {
-    // Use the GitHub repo name as basePath and assetPrefix
-    const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '');
-    basePath = `/${repo}`;
-    assetPrefix = `/${repo}`;
-  } else {
-    console.warn('GITHUB_REPOSITORY not found. Make sure the environment variable is set.');
-  }
-}
+// next.config.js
+const isGithubActions = process.env.GITHUB_ACTIONS;
 
 module.exports = {
-  output: 'export', // Ensure the output is set for static export (required for GitHub Pages)
-  basePath,         // Use the basePath defined above
-  assetPrefix,      // Use the assetPrefix defined above
-  images: {
-    unoptimized: true, // Disable Next.js image optimization for GitHub Pages
+  // Example basePath; remove if not needed
+  basePath: isGithubActions ? '/Autocoder-Story-Matrix-4' : '',
+
+  // Other Next.js configurations
+  reactStrictMode: true,
+  swcMinify: true,
+  
+  // Optionally set up environment variables based on the environment
+  env: {
+    customKey: isGithubActions ? 'github-action-value' : 'local-value',
   },
-  trailingSlash: true, // Optional: ensures all routes end with a trailing slash
+
+  // Optional: Redirects
+  async redirects() {
+    return [
+      {
+        source: '/old-path',
+        destination: '/new-path',
+        permanent: true,
+      },
+    ];
+  },
+
+  // Optional: Rewrites
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `https://api.example.com/:path*`,
+      },
+    ];
+  },
 };
