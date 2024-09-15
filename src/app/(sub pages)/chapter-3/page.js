@@ -2,9 +2,6 @@
 import ItemLayout from "@/components/about/ItemLayout"; // Ensure the correct path to ItemLayout
 import Image from "next/image";
 
-export const metadata = {
-  title: "Chapter 3",
-};
 
 const Chapter3 = () => {
   return (
